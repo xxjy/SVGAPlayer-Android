@@ -88,6 +88,9 @@ class SVGAParser(private val context: Context) {
     companion object {
         private val threadPoolBlockingQueue = LinkedBlockingQueue<Runnable>()
         private var threadPoolExecutor = ThreadPoolExecutor(3, 10, 60000, TimeUnit.MILLISECONDS, threadPoolBlockingQueue)
+        init {
+            threadPoolExecutor.allowCoreThreadTimeOut(true)
+        }
         fun setThreadPoolExecutor(executor: ThreadPoolExecutor) {
             threadPoolExecutor = executor
         }
